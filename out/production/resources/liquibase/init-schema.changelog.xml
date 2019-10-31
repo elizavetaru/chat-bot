@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        logicalFilePath="init-schema"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="laputski" id="create-feature-table">
+        <createTable tableName="feature">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet author="laputski" id="create-car-table">
+        <createTable tableName="car">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="feature_id" type="bigint"/>
+            <column name="value" type="varchar(255)"/>
+            <column name="link" type="varchar(255)" />
+        </createTable>
+        <addForeignKeyConstraint baseTableName="car" constraintName="fk_feature"
+                                 baseColumnNames="feature_id" referencedTableName="feature" referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

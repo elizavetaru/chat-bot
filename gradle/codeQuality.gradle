@@ -1,0 +1,38 @@
+/**
+ * Contains common configurations for working with code quality related to java projects.
+ */
+
+def configDir = new File(rootDir, 'config')
+def checkstyleConfigDir = "$configDir/checkstyle"
+
+// configure static code style plugins
+apply plugin: 'checkstyle'
+checkstyle {
+  configFile = new File(checkstyleConfigDir, "checkstyle.xml")
+  configProperties.checkstyleConfigDir = checkstyleConfigDir
+  ignoreFailures = false
+}
+
+task checkstyleHtml << {
+  try {
+    String xmlReportFilePath = checkstyleMain.reports.xml.destination.parent;
+    File xmlReportFile = new File(xmlReportFilePath, "main.xml")
+    if (!xmlReportFile.exists()) {
+      return
+    }
+
+    ant.xslt(in: checkstyleMain.reports.xml.destination,
+    style: file("$checkstyleConfigDir/styles.xsl"),
+    out: new File(xmlReportFilePath, 'main.html'))
+  }
+  catch (Exception e) {
+    throw new RuntimeException(e)
+  }
+}
+
+checkstyleMain.finalizedBy checkstyleHtml
+
+tasks.withType(Test) {
+  systemProperties = System.properties
+  systemProperties['user.dir'] = workingDir
+}

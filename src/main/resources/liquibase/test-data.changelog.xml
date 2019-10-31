@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="laputski" id="insert-features">
+        <insert tableName="feature">
+            <column name="name" value="brand"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="model"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="cost"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="location"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="bodyType"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="year"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="engine"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="engine volume"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="transmission"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="drive unit"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="name" value="quality"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

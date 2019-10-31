@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bot?serverTimezone=UTC
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      ddl-auto: none
+      hbm2ddl.method: validate
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+  liquibase:
+    change-log: classpath:liquibase/main.changelog.xml
+  jackson.serialization.fail-on-empty-beans: false
