@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@ComponentScan({"by.bsu.samples.microservice.controller, by.bsu.samples.microservice.service"})
+
 public class MicroserviceApplication {
 
     public static void main(String[] args) {
