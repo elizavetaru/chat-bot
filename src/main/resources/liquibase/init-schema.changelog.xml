@@ -27,4 +27,13 @@
         <addForeignKeyConstraint baseTableName="car" constraintName="fk_feature"
                                  baseColumnNames="feature_id" referencedTableName="feature" referencedColumnNames="id"/>
     </changeSet>
+
+    <changeSet author="laputski" id="create-questionary-table">
+        <createTable tableName="questionary">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)" />
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
