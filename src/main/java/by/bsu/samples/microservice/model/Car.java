@@ -12,12 +12,13 @@ import java.io.Serializable;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "car")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Car implements Serializable {
+
+    public Car(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

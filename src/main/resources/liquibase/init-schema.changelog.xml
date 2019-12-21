@@ -28,12 +28,12 @@
                                  baseColumnNames="feature_id" referencedTableName="feature" referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet author="laputski" id="create-question-table">
-        <createTable tableName="question">
+    <changeSet author="laputski" id="create-questionary-table">
+        <createTable tableName="questionary">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="text" type="varchar(255)" />
+            <column name="name" type="varchar(255)" />
         </createTable>
     </changeSet>
 </databaseChangeLog>

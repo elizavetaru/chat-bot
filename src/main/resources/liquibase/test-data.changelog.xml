@@ -51,4 +51,18 @@
         </insert>
     </changeSet>
 
+    <changeSet author="laputski" id="insert-questionary">
+        <insert tableName="questionary">
+            <column name="name" value="What is the brand?"/>
+        </insert>
+
+        <insert tableName="questionary">
+            <column name="name" value="What is the model?"/>
+        </insert>
+
+        <insert tableName="questionary">
+            <column name="name" value="What is the cost?"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
