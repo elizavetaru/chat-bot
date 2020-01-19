@@ -39,8 +39,10 @@ public class AnalyticController extends GenericController<Car> {
     @GetMapping(value = "/items")
     public void answer() {
         Map<String, String> questionary =  new HashMap<>();
-        questionary.put("6", "2000");
-        questionary.put("1", "volvo");
+
+        //For example purposes
+//        questionary.put("6", "2007");
+//        questionary.put("1", "volvo");
 
         analyticService.answerQuestion(questionary);
     }

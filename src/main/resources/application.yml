@@ -20,3 +20,5 @@ spring:
   jackson.serialization.fail-on-empty-beans: false
 
 debug: true
+
+debug: true

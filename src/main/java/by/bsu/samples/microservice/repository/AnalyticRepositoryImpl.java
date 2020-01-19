@@ -1,6 +1,7 @@
 package by.bsu.samples.microservice.repository;
 
 import by.bsu.samples.microservice.model.Car;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,15 +27,25 @@ public class AnalyticRepositoryImpl implements AnalyticRepositoryCustom {
         CriteriaQuery<Car> cq = cb.createQuery(Car.class);
 
         Root<Car> car = cq.from(Car.class);
-        List<Predicate> predicates = new ArrayList<>();
+        List<List<Car>> resultSet = new ArrayList<>();
+
+        cq.select(car.get("link"));
 
         for (String key : questionary.keySet()) {
-            predicates.add(cb.equal(car.get("featureId"), key));
-            predicates.add(cb.equal(car.get("value"), questionary.get(key)));
+            Predicate predicateForFeature = cb.equal(car.get("featureId"), key);
+            Predicate predicateForValue = cb.equal(car.get("value"), questionary.get(key));
+            Predicate predicateForColor = cb.and(predicateForFeature, predicateForValue);
+
+            cq.where(predicateForColor);
+            resultSet.add(entityManager.createQuery(cq).getResultList());
         }
 
-        cq.where(predicates.toArray(new Predicate[0]));
+        List<Car> result = resultSet.get(0);
 
-        return entityManager.createQuery(cq).getResultList();
+        for (int i = 1; i < resultSet.size(); i++) {
+            result = (List<Car>) CollectionUtils.intersection(result, resultSet.get(i));
+        }
+
+        return result;
     }
 }
